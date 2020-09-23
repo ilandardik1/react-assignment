@@ -1,0 +1,706 @@
+{
+  "riskDetails": [
+    {
+      "summary": "Services in ECS cluster <b>default</b> have a single task",
+      "id": 8152331,
+      "risk": null,
+      "description": [
+        "Services in ECS cluster <b>default</b> have a single task. This could lead to unplanned downtime during a container instance failure (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>If the ECS service has a single task and that task becomes unhealthy, the service will stop working. This can lead to application downtime.</p>",
+      "resolution": "<p>If resiliency is required for the service, set the <b>Number of tasks</b> to a value greater than one and make sure the container instances have capacity to run the additional tasks.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Services in ECS cluster <b>test-cluster</b> have a single task",
+      "id": 8152327,
+      "risk": null,
+      "description": [
+        "Services in ECS cluster <b>test-cluster</b> have a single task. This could lead to unplanned downtime during a container instance failure (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>If the ECS service has a single task and that task becomes unhealthy, the service will stop working. This can lead to application downtime.</p>",
+      "resolution": "<p>If resiliency is required for the service, set the <b>Number of tasks</b> to a value greater than one and make sure the container instances have capacity to run the additional tasks.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> are not using copy tags to snapshots",
+      "id": 8152446,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> are not using copy tags to snapshots. This feature automatically copies tags set on your database instances to any automated or manual database snapshots that are created from your instances.",
+        "@table1"
+      ],
+      "impact": "<p>Copying the RDS instance tags to any automated or manual snapshots taken from the instances allows you to easily set metadata, including access policies, on your snapshots to match the parent instance. Once enabled, tags are copied to all future snapshots, including cross-region snapshots.</p>",
+      "resolution": "<p>Enable copy tags to snapshots on all RDS instances.</p><p class=\"list-title\">Use the following steps to enable copy tags to snapshots:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>Click <b>Databases</b>.</li><li>Click on the database that you wish to reconfigure.</li><li>Click <b>Modify</b>.</li><li>Under <b>Backup</b>, select the <b>Copy tags to snapshots</b> checkbox.</li><li>Click <b>Continue</b>, then click <b>Modify DB Instance</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has failover records with the same health check",
+      "id": 8152524,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has failover records with the same health check. This configuration can result in failover failures which may lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "Route 53 active-passive failover is done by configuring one primary and one secondary record set. If both the primary and secondary records have the same health check, both will be either healthy or unhealthy at the same time. As a result, failover will not happen.",
+      "resolution": "<p class=\"list-title\">To update the health check of route 53 failover records using the console:</p><ol><li>Open the Amazon Route 53 console at <a href=\"https://console.aws.amazon.com/route53/\" target=\"_blank\">https://console.aws.amazon.com/route53/</a>.</li><li>Click <b>Hosted Zones</b>.</li><li>Select the hosted zone that contains the relevant failover records.</li><li>Select the failover record that you would like to update.</li><li>Change the <b>Health Check to Associate</b> to the desired value.</li><li>Click <b>Save Record Set</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has active-active records with a high TTL value",
+      "id": 8152516,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has active-active records with a time to live (TTL) value that is higher than <b>60</b> seconds. This prevents clients from rapidly switching to a failover record in case of a resource failure. A high TTL value can lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>TTL is the number of seconds that a DNS resolver caches a response. A TTL value is associated with every record. AWS recommends a TTL of 60 seconds or less when using DNS Failover, to minimize the time that it takes to stop routing traffic to your failed endpoint.</p>",
+      "resolution": "<p class=\"list-title\">To update the TTL of the Route 53 records using the console:</p><ol><li>Open the Amazon Route53 console at <a href=\"https://console.aws.amazon.com/route53/\" target=\"_blank\">https://console.aws.amazon.com/route53/</a>.</li><li>Click <b>Hosted Zones</b>.</li><li>Select the hosted zone that contains the relevant records.</li><li>Select the record that needs to be updated.</li><li>Change the <b>TTL</b> to the desired value (in seconds).</li><li>Click <b>Save Record Set</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Load balancers in account <b>844066344111</b>, region <b>us-east-1</b> have Connection Draining disabled",
+      "id": 8151958,
+      "risk": null,
+      "description": [
+        "Load balancers in account <b>844066344111</b>, region <b>us-east-1</b> have Connection Draining disabled. We recommend enabling Connection Draining to ensure fault tolerance in the cloud infrastructure (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Connection Draining prevents open network connections from being broken an instance is being taken out of service, undergoing a software update, or being replaced by a fresh instance that contains updated software.</p>\n\t\t\t\t\t\t\t\t <p>When Connection Draining is enabled, the process of deregistering an instance from a load balancer undergoes a delay. For the duration of the configured timeout, the load balancer allows existing, in-flight requests made to an instance to complete. However, it will not send any new requests to that instance. Once the timeout is reached, any remaining connections will be forcibly closed.</p>\n\t\t\t\t\t\t\t\t <p>When Connection Draining is disabled, any in-flight requests made to instances that are de-registering or unhealthy are not completed.</p>",
+      "resolution": "<p>We recommend enabling Connection Draining for all load balancers.</p>\n\t\t\t\t\t\t\t\t\t <p></p><p class=\"list-title\">To enable Connection Draining for an application load balancer using the AWS console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>LOAD BALANCING</b>, click <b>Target Groups</b>.</li><li>Select the target group that you want to update.</li><li>In the <b>Description</b> tab, under <b>Attributes</b>, click <b>Edit attributes</b>.</li><li>Change the value of <b>Deregistration delay</b> to a value greater than 0.</li><li>Click <b>Save</b>.</li></ol><p></p><p class=\"list-title\">To enable Connection Draining for a classic load balancer using the AWS console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>LOAD BALANCING</b>, click <b>Load Balancers</b>.</li><li>Select the classic load balancer that you want to update.</li><li>In the <b>Instances</b> tab, next to <b>Connection Draining</b>, click <b>(Edit)</b>.</li><li>On the <b>Configure Connection Draining</b> page, select the <b>Enable Connection Draining</b> checkbox.</li><li>Enter the <b>Timeout</b> value or leave the default of 300 seconds.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "There are unused expired certificates in account <b>973889768955</b>, region <b>us-east-1</b>",
+      "id": 8152122,
+      "risk": null,
+      "description": [
+        "There are unused expired certificates in account <b>973889768955</b>, region <b>us-east-1</b>. This could cause misconfigurations that may lead to downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>SSL certificates facilitate the encryption of data in transit. The SSL certificates allow you to use HTTPS to create secure, encrypted connections. An expired SSL certificate on a website can discourage users from using the application.</p>\n\t\t\t\t\t\t\t\t <p>In addition, an expired SSL certificate can lead to phishing scams where the victims (the users of the web site) are lured into giving their personal information, which is misused later by cyber attackers.</p>",
+      "resolution": "Renew the expired certificates or delete them if they are not needed.",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has a single failover record",
+      "id": 8152556,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has a single failover record. This configuration presents a single point of failure which may lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "Route 53 active-passive failover is done by configuring one primary and one secondary record. If only one failover record is configured, this enrty will not provide failover.",
+      "resolution": "For a valid active-passive failover configuration, create two records with the same name. Set the routing policy to failover and make sure one record is configured as primary and one as secondary.",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Static EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> with delete-on-termination on root volume don’t have termination protection",
+      "id": 8152209,
+      "risk": null,
+      "description": [
+        "<p>There are static EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> with delete-on-termination on the root volume that don’t have termination protection. This configuration is very risky. Accidental instance termination through the console, the API, or the CLI can cause downtime and possibly even data loss.</p>\n\t\t\t\t\t\t\t\t\t\t\t  <p>Affected EC2 instances: <b>6</b> out of <b>10</b> static EC2 instances in this account & region.</p>\n\t\t\t\t\t\t\t\t\t\t\t  <p><b>Note:</b> Instances that have data volumes with delete-on-termination are not shown here.</p>",
+        "@table1"
+      ],
+      "impact": "<p>Without termination protection enabled, there is a risk of accidentally terminating EC2 instances. This termination can lead to downtime.</p>\n\t\t\t\t\t\t\t\t <p>In addition, there is a risk of data loss when the delete-on-termination attribute is set to <b>True</b>. When this attribute is enabled, the volumes associated with the EC2 instance are deleted when the instance is terminated.</p>",
+      "resolution": "<p>Make sure that static EC2 instances with delete-on-termination that are deployed outside of an auto-scaling group have the termination protection safety feature enabled. This protects the EC2 instances from accidental termination, which could cause downtime and data loss.</p>\n\t\t\t \t\t\t\t\t\t <p>To prevent data loss during termination, set the delete-on-termination attribute to <b>false</b>.</p><p class=\"list-title\">To enable the termination protection feature using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>INSTANCES</b>, click on <b>instances</b>.</li><li>Select the EC2 instance that you would like to protect against accidental termination.</li><li>Click the <b>Actions</b> button, and then select <b>Instance Settings</b> and click <b>Change Termination Protection</b>.</li><li>In the Enable Termination Protection dialog box, click <b>Yes, Enable</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "S3 buckets in account <b>844066344111</b>, region <b>us-east-1</b> have server access logging to a target bucket with logging enabled",
+      "id": 8152090,
+      "risk": null,
+      "description": [
+        "S3 buckets in account <b>844066344111</b>, region <b>us-east-1</b> have server access logging to a target bucket with logging enabled. This configuration is not recommended. It may lead to performance issues and unnecessary costs (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Server access logging provides detailed records of the requests made to a bucket.</p><p class=\"list-title\">To make managing logs easier, AWS recommends:</p><ol><li>Don’t save access logs to the same bucket.</li><li>Don’t save access logs to a bucket with logging enabled.</li></ol><p></p><p>When this happens, extraneous logs are created for the logs that are written to the bucket. This behavior is not ideal because the extra logs make it harder to find the logs that you need.</p>",
+      "resolution": "<p>Make sure that the logging target bucket does not have logging enabled.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "CloudFront distributions in account <b>844066344111</b>, region <b>us-east-1</b> are configured without custom error responses for all 5xx HTTP error codes",
+      "id": 8150750,
+      "risk": null,
+      "description": [
+        "CloudFront distributions in account <b>844066344111</b>, region <b>us-east-1</b> are configured without custom error responses for all 5xx HTTP error codes. It is important to configure CloudFront custom error responses for all 5xx HTTP error codes. Lack of custom error responses can lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>When a viewer call results in an error from the origin server, e.g. server is busy or unavailable, CloudFront returns the error status code to the viewer.</p>\n\t\t\t\t\t\t\t\t <p>When custom error responses are not configured, CloudFront caches the error status code for five minutes. This means that for the next five minutes, any additional, identical viewer call will receive the same error response, even if the error has already been resolved. This may cause the application to incorrectly appear to be unavailable.</p>",
+      "resolution": "<p>Make sure to configure custom error responses for all of the 5xx HTTP error codes. We recommend also configuring custom error responses for all of the 4xx HTTP error codes.</p>\n\t\t\t\t\t\t\t\t\t <p></p><p class=\"list-title\">To configure custom error responses for a CloudFront distribution using the AWS console:</p><ol><li>Open the Amazon CloudFront console at <a href=\"https://console.aws.amazon.com/cloudfront/\" target=\"_blank\">https://console.aws.amazon.com/cloudfront/</a>.</li><li>On the <b>Distributions</b> page, select the web distribution to update.</li><li>Click <b>Distribution Settings</b>, and then click the <b>Error Pages</b> tab.</li><li><p class=\"list-title\">For each missing HTTP error code:</p><ol type=\"a\"><li>Click <b>Create Custom Error Response</b>.</li><li>Select the HTTP error code from the list.</li><li>Enter the error caching TTL.</li><li>Click <b>Create</b>.</li></ol></li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Load balancers in account <b>844066344111</b>, region <b>us-east-1</b> are inaccessible",
+      "id": 8151874,
+      "risk": null,
+      "description": [
+        "Load balancers in account <b>844066344111</b>, region <b>us-east-1</b> are inaccessible because they do not have any healthy target instances.",
+        "@table1"
+      ],
+      "impact": "<p>If all target EC2 instances of a load balancer are unhealthy, the load balancer cannot redirect traffic. As a result, it will be unusable and it will return errors for all requests.</p>",
+      "resolution": "<p>Make sure that there are healthy target instances in at least two availability zones.</p>\n\t\t\t\t\t\t\t\t<p>If the load balancer is not needed, delete it and all of its related resources.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> are not using IAM database authentication",
+      "id": 8152488,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> are not using IAM database authentication. This prevents you from securely connecting to the database with tokens instead of using passwords (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>You can authenticate access to your DB instance using AWS Identity and Access Management (IAM) database authentication. With this authentication method, you don't need to use a password when you connect to a database instance. Instead, you use an authentication token which is more secure.</p><p class=\"list-title\">IAM database authentication provides the following benefits:</p><ul><li>Network traffic to and from the database is encrypted using Secure Sockets Layer (SSL).</li><li>You can use IAM to centrally manage access to your database resources instead of managing access independently for each DB instance.</li><li>For applications running on Amazon EC2, you can use profile credentials specific to your EC2 instance to access your database instead of using a password. This improves your security.</li></ul>",
+      "resolution": "<p>Enable IAM database authentication on all RDS instances and use it instead of passwords to connect to the RDS instances.</p><p class=\"list-title\">Use the following steps to enable IAM database authentication:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>Click <b>Databases</b>.</li><li>Click on the database that you wish to reconfigure.</li><li>Click <b>Modify</b>.</li><li>Under <b>Database options</b> for <b>IAM DB authentication</b>, select <b>Enable IAM DB authentication</b>.</li><li>Click <b>Continue</b>, then click <b>Modify DB Instance</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has geolocation routing records without a default record",
+      "id": 8152528,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has geolocation routing records without a default record. This may prevent clients from connecting to the application from certain locations (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Geolocation routing lets you choose the resources that serve your traffic based on the geographic location of the users, i.e. the location that the DNS queries originated from. Geolocation works by mapping IP addresses to locations. However, some IP addresses aren't mapped to geographic locations, so that even if you create geolocation records that cover all seven continents, Amazon Route 53 will receive some DNS queries from locations that it can't identify.</p>\n\t\t\t\t\t\t\t\t <p>We recommend that you create a default location resource record set to handle both queries from IP addresses that aren't mapped to any location as well as queries that come from locations for which you haven't created geolocation records. If you don't create a default record, route 53 returns a \"no answer\" response for those queries.</p>",
+      "resolution": "When using geolocation routing, create a default location resource record set.",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Load balancers in account <b>973889768955</b>, region <b>us-east-1</b> are configured with a weak health check path",
+      "id": 8152350,
+      "risk": null,
+      "description": [
+        "Load balancers in account <b>973889768955</b>, region <b>us-east-1</b> are configured with the default health check path (\"/\"), which is weak. This could lead to problems with application performance and responsiveness (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>The load balancer only routes requests to healthy instances. When the load balancer determines an instance to be unhealthy, it stops routing requests to that instance.</p>\n\t\t\t\t\t\t\t\t <p>Health checks allow the discovery of available EC2 instances. The default health check monitors only the availability of the instance and the application. It does not validate that the application is working properly. As a result, the load balancer may continue routing requests to congested or unresponsive instances.</p>",
+      "resolution": "<p>We recommend implementing a more comprehensive health check that makes sure that all of the application’s components are functioning.</p>\n\t\t\t\t\t\t\t\t\t <p>Create a custom health check for each application that validates the application’s readiness (e.g. path = \"/ping\").</p>\n\t\t\t\t\t\t\t\t\t <p></p><p class=\"list-title\">To update the health check configuration for an application load balancer using the AWS console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>LOAD BALANCING</b>, click <b>Target Groups</b>.</li><li>Select the target group that you want to update.</li><li>On the <b>Health Checks</b> tab, click <b>Edit health check</b>.</li><li>On the <b>Edit health check</b> page, update the <b>path</b> configuration as needed.</li><li>Click <b>Save</b>.</li></ol><p></p><p class=\"list-title\">To update the health check configuration for a classic load balancer using the AWS console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>LOAD BALANCING</b>, click <b>Load Balancers</b>.</li><li>Select the classic load balancer that you want to update.</li><li>On the <b>Health Check</b> tab, click <b>Edit Health Check</b>.</li><li>On the <b>Configure Health Check</b> page, update the <b>Ping Path</b> configuration as needed.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has alias records with a health check",
+      "id": 8152532,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has alias records with a health check. This configuration can result in failover failures which may lead to application downtime (see Impact).",
+        "@table2"
+      ],
+      "impact": "We recommend that you associate health checks only with non-alias records. You can associate a health check with an alias record instead of, or in addition to, setting the value of <b>Evaluate Target Health</b> to <b>Yes</b>. However, it is generally preferable for Route 53 to respond to queries based on the health of the underlying resources, e.g. the HTTP servers, database servers, and other resources that your alias records refer to.",
+      "resolution": "<p>When using alias records, use the target health evaluation instead of a health check.</p><p class=\"list-title\">To enable target health evaluation for route 53 alias records using the console:</p><ol><li>Open the Amazon Route 53 console at <a href=\"https://console.aws.amazon.com/route53/\" target=\"_blank\">https://console.aws.amazon.com/route53/</a>.</li><li>Click <b>Hosted Zones</b>.</li><li>Select the hosted zone that contains the failover records.</li><li>Select the failover record that you wish to update.</li><li>In <b>Evaluate Target Health</b>, select <b>Yes</b>.</li><li>Click <b>Save Record Set</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> do not have automated backups",
+      "id": 8152378,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> do not have automated backups. This could lead to data loss in case of a disaster (see Impact).",
+        "@table1"
+      ],
+      "impact": "The automated backup feature of Amazon RDS reduces the risk of unexpected data loss by enabling point-in-time recovery for the RDS instance. When automated backups are turned on for your RDS instance, Amazon RDS automatically generates a full daily snapshot of your data. The automated backups are saved for the specified backup retention period. If the backup retention period is not sufficient, long term backups will not be available when needed.",
+      "resolution": "<p>Set the retention period for the automated database backup to at least 30 days.</p><p class=\"list-title\">To configure the database backup retention policy:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>Click <b>Databases</b>.</li><li>Click on the database that you wish to reconfigure.</li><li>Click <b>Modify</b>.</li><li>In the <b>Backup retention period</b> section, under <b>Backup</b>, select the number of days to retain automated backups.</li><li>Click <b>Continue</b>, then click <b>Modify DB Instance</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has a single weighted record",
+      "id": 8152548,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has a single weighted record. This configuration presents a single point of failure which may lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "Weighted routing lets you associate multiple resources with a single domain/subdomain name and regulate how much traffic is routed to each resource. This can be useful for a variety of purposes, including load balancing and testing new versions of software. Configuring a single weighted record causes all traffic to be routed to one resource, resulting in an application single point of failure.",
+      "resolution": "<p>When using weighted routing, make sure that there are at least two weighted records for each domain or subdomain.</p>\n\t\t\t\t\t\t\t\t\t <p>To configure weighted routing, you need to create records that have the same name and type for each of your resources. Then, assign a relative weight to each record, designating how much traffic you want to send to that resource. Amazon Route 53 will send traffic to each resource based on the weight that you assigned to the record, as a proportion of the total weight for all records in the group.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Public EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> have unrestricted IMAPS (tcp/993) access",
+      "id": 8152299,
+      "risk": null,
+      "description": [
+        "EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> with a Public IP address have unrestricted IMAPS (tcp/993) access. This poses a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Allowing unrestricted (0.0.0.0/0 or ::/0) access makes your system vulnerable to malicious activity such as hacking, man-in-the-middle attacks and brute-force attacks. We strongly recommend restricting access to specific security groups or IP addresses that require it, to implement the principle of least privilege and reduce the possibility of a breach.</p>",
+      "resolution": "<p class=\"list-title\">To restrict network access using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>NETWORK & SECURITY</b>, click on <b>Security Groups</b>.</li><li>Select the security group that you would like to reconfigure.</li><li>On the <b>Inbound</b> tab, click <b>Edit</b>.</li><li>Change the source for any inbound rules that allow unrestricted access.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Elastic IP addresses in account <b>973889768955</b>, region <b>us-east-1</b> are not associated",
+      "id": 8152265,
+      "risk": null,
+      "description": [
+        "Elastic IP addresses in account <b>973889768955</b>, region <b>us-east-1</b> are not associated with an EC2 instance or an elastic network interface. We recommend releasing unassociated elastic IP addresses for better management and cost reduction.",
+        "@table1"
+      ],
+      "impact": "Maintaining unassociated elastic IP addresses may lead to elastic IP limit violations. It also causes unnecessary expenses.",
+      "resolution": "<p>We recommend releasing unassociated elastic IP addresses.</p><p class=\"list-title\">To release unassociated elastic IPs:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>NETWORK & SECURITY</b>, click on <b>Elastic IPs</b>.</li><li>Select the elastic IP that you want to release.</li><li>Click <b>Actions</b> -> <b>Release addresses</b>.</li><li>In the <b>Release addresses</b> confirmation dialog, click <b>Release</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "There are IAM users in account <b>844066344111</b> who have access keys that are more than <b>90</b> days old",
+      "id": 8151866,
+      "risk": null,
+      "description": [
+        "There are IAM users in account <b>844066344111</b> who have access keys that are more than <b>90</b> days old. This poses a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>AWS Access keys are long term credentials which are used by an IAM user. Access keys are used to sign programmatic requests to the AWS CLI, API or SDK. If the key is compromised, it can be used to access resources in your AWS account without your knowledge. This poses a severe security risk.</p>",
+      "resolution": "<p class=\"list-title\">Rotate access keys periodically. Rotating keys has the following benefits:</p><ul><li>Significant reduces the likelihood of accidental exposure.</li><li>Reduces the opportunities for an outsider to use compromised access keys to access your AWS resources.</li></ul><p></p><p class=\"list-title\">To rotate an access key:</p><ol><li>Create a new access key.</li><li>Configure your system to use the new access key (AWS CLI, application code, etc.).</li><li>Disable the old access key.</li><li>After validating that everything is working properly, delete the old access key.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Public EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> have unrestricted udp/1194 access",
+      "id": 8152307,
+      "risk": null,
+      "description": [
+        "EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> with a Public IP address have unrestricted udp/1194 access. This poses a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Allowing unrestricted (0.0.0.0/0 or ::/0) access makes your system vulnerable to malicious activity such as hacking, man-in-the-middle attacks and brute-force attacks. We strongly recommend restricting access to specific security groups or IP addresses that require it, to implement the principle of least privilege and reduce the possibility of a breach.</p>",
+      "resolution": "<p class=\"list-title\">To restrict network access using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>NETWORK & SECURITY</b>, click on <b>Security Groups</b>.</li><li>Select the security group that you would like to reconfigure.</li><li>On the <b>Inbound</b> tab, click <b>Edit</b>.</li><li>Change the source for any inbound rules that allow unrestricted access.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "The <b>EC2ContainerService-test-cluster-EcsInstanceAsg-UP83FCW7QWHY</b> auto scaling group points to unavailable resources",
+      "id": 8150738,
+      "risk": null,
+      "description": [
+        "The <b>EC2ContainerService-test-cluster-EcsInstanceLc-7O42312I95Y5</b> launch configuration of the <b>EC2ContainerService-test-cluster-EcsInstanceAsg-UP83FCW7QWHY</b> auto scaling group points to unavailable resources. When needed, the scaling group will not be able to spawn new EC2 instances. This could lead to severe performance issues and unplanned downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Scaling groups scale up your system automatically as needed. If launch configuration resources are not available, new EC2 instances won’t start, causing the scale up to fail. As a result, the application won’t have sufficient resources to handle the load. This will affect performance and may ultimately lead to downtime.</p>",
+      "resolution": "<p>Make sure that all of the resources in the launch configuration are available.</p><p class=\"list-title\">To prevent confusion or resource deletion:</p><ol><li>Name and tag the resources used in the launch configuration correctly.</li><li>Never reference a shared/public image in launch configuration – select only \"Owned by me\" AMIs.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Load balancers in account <b>973889768955</b>, region <b>us-east-1</b> don’t have deletion protection",
+      "id": 8152364,
+      "risk": null,
+      "description": [
+        "Load balancers in account <b>973889768955</b>, region <b>us-east-1</b> don’t have deletion protection. This configuration is very risky. An accidental load balancer deletion through the console, the API, or the CLI can cause downtime.",
+        "@table1"
+      ],
+      "impact": "<p>Without deletion protection enabled, there is a risk of accidentally deleting the load balancer. This can lead to downtime. If you enable deletion protection for your load balancer, you will need to disable it if you ever want to delete the load balancer.</p>",
+      "resolution": "<p>Make sure that load balancers have the deletion protection safety feature enabled. This protects the load balancers from accidental deletion, which may lead to downtime.</p><p class=\"list-title\">To enable deletion protection using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>LOAD BALANCING</b>, click on <b>Load Balancers</b>.</li><li>Select the load balancer that you want to update.</li><li>On the <b>Description</b> tab, click <b>Edit attributes</b>.</li><li>On the <b>Edit load balancer attributes</b> page, select <b>Enable for Delete Protection</b>, and then choose <b>Save</b>.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Load balancers in account <b>844066344111</b>, region <b>us-east-1</b> are configured with a weak health check path",
+      "id": 8151998,
+      "risk": null,
+      "description": [
+        "Load balancers in account <b>844066344111</b>, region <b>us-east-1</b> are configured with the default health check path (\"/\"), which is weak. This could lead to problems with application performance and responsiveness (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>The load balancer only routes requests to healthy instances. When the load balancer determines an instance to be unhealthy, it stops routing requests to that instance.</p>\n\t\t\t\t\t\t\t\t <p>Health checks allow the discovery of available EC2 instances. The default health check monitors only the availability of the instance and the application. It does not validate that the application is working properly. As a result, the load balancer may continue routing requests to congested or unresponsive instances.</p>",
+      "resolution": "<p>We recommend implementing a more comprehensive health check that makes sure that all of the application’s components are functioning.</p>\n\t\t\t\t\t\t\t\t\t <p>Create a custom health check for each application that validates the application’s readiness (e.g. path = \"/ping\").</p>\n\t\t\t\t\t\t\t\t\t <p></p><p class=\"list-title\">To update the health check configuration for an application load balancer using the AWS console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>LOAD BALANCING</b>, click <b>Target Groups</b>.</li><li>Select the target group that you want to update.</li><li>On the <b>Health Checks</b> tab, click <b>Edit health check</b>.</li><li>On the <b>Edit health check</b> page, update the <b>path</b> configuration as needed.</li><li>Click <b>Save</b>.</li></ol><p></p><p class=\"list-title\">To update the health check configuration for a classic load balancer using the AWS console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>LOAD BALANCING</b>, click <b>Load Balancers</b>.</li><li>Select the classic load balancer that you want to update.</li><li>On the <b>Health Check</b> tab, click <b>Edit Health Check</b>.</li><li>On the <b>Configure Health Check</b> page, update the <b>Ping Path</b> configuration as needed.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Load balancers in account <b>973889768955</b>, region <b>us-east-1</b> are configured with redundant inbound access",
+      "id": 8152342,
+      "risk": null,
+      "description": [
+        "Load balancers in account <b>973889768955</b>, region <b>us-east-1</b> are configured with redundant inbound access. This can pose a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "We recommend allowing as few permissions as possible. Adding unnecessary inbound port permissions to the security group may result is a security breach if this security group is used by additional resources.",
+      "resolution": "<p class=\"list-title\">To add restrictions to the load balancer security group using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, click on <b>LOAD BALANCING</b>, then click <b>Load Balancers</b>.</li><li>Select the load balancer that you want to reconfigure.</li><li>In the <b>Description</b> tab scroll down to the <b>Security</b> section and click on the relevant security group.</li><li>In the details section at the bottom, click on the <b>Inbound</b> tab and then click <b>Edit</b>.</li><li>Click on the X next to the redundant rule.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has record sets with different record types",
+      "id": 8152544,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has record sets with different record types. This may cause unexpected failover behavior (see Impact).",
+        "@table1"
+      ],
+      "impact": "Active-active/active-passive routing lets you associate multiple resources with a single domain/subdomain name for failover, load balancing and improved performance. Configuring record sets with different record types may lead to failover failures resulting in application downtime.",
+      "resolution": "To configure active-active/active-passive routing, you need to create records that have the same name and type on each of your resources. Change the record types as needed so that all associated failover records are of the same type.",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> are using the default parameter / option group",
+      "id": 8152404,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> are using the default parameter group and/or the default option group. This could lead to unplanned downtime if need to make changes to the parameters and/or options at a later time (see Impact).",
+        "@table1"
+      ],
+      "impact": "Parameter groups and option groups are used to manage the RDS instance engine and database configuration. Each RDS instance is associated with one parameter group and one option group. We do not recommend using the default groups because they are read-only. If you need to change a parameter at some time in the future, you will need to associate the instance with a different, user-defined group. This will cause downtime when the changes are made.",
+      "resolution": "<p>Make sure that each RDS instance is associated with a dedicated, user-defined parameter group and option group.</p><p class=\"list-title\">Use the following steps to change the instance parameter group:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>Click <b>Databases</b>.</li><li>Click on the database that you wish to reconfigure.</li><li>Click <b>Modify</b>.</li><li>Under <b>Database options</b> in <b>DB parameter group</b> choose the parameter group.</li><li>Click <b>Continue</b>, then click <b>Modify DB Instance</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "EC2 T instances in account <b>973889768955</b>, region <b>us-east-1</b> have limited CPU Credits",
+      "id": 8152150,
+      "risk": null,
+      "description": [
+        "<p>EC2 T instances in account <b>973889768955</b>, region <b>us-east-1</b> have limited CPU Credits. This can cause to severe performance issues. In extreme cases, it may even lead to downtime (see impact).</p>",
+        "@table1"
+      ],
+      "impact": "<p>EC2 Burstable Performance Instances (T2/T3) provide a baseline CPU performance under normal workload. But when the workload increases, Burstable Performance Instances can burst, i.e. increase CPU performance.</p>\n\t\t\t\t\t\t\t\t <p>CPU Credit regulates the amount of CPU burst that is available for each instance. If the instance is limited and you run out of credits, performance may be affected. In severe cases, this can lead to application downtime.</p>",
+      "resolution": "<p>Make sure that EC2 T instances are configured as unlimited.</p><p class=\"list-title\">To change the T2/T3 instance configuration to unlimited using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>INSTANCES</b>, click <b>instances</b>.</li><li>Select the EC2 instance that you want to reconfigure.</li><li>Click on the <b>Actions</b> button, and then select <b>Instance Settings</b> and click <b>Change T2/T3 Unlimited</b>.</li><li>Click <b>Enable</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> are deployed in a single availability zone",
+      "id": 8152392,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> are deployed in a single availability zone. This could lead to unplanned downtime during a database outage (see Impact).",
+        "@table1"
+      ],
+      "impact": "Amazon RDS with multi-AZ deployment maintains a synchronous standby replica in an availability zone that is different from that of the active DB instance. This configuration provides data redundancy, high availability and failover support. It also eliminates I/O freezes and minimizes latency spikes during system backups. RDS configuration without multi-AZ deployment is vulnerable to outages that could lead to application downtime.",
+      "resolution": "<p>Modify the RDS instance to enable multi-AZ deployment.</p><p class=\"list-title\">Use the following steps to enable multi-AZ RDS deployment:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>Click <b>Databases</b>.</li><li>Click on the database that you wish to reconfigure.</li><li>Click <b>Modify</b>.</li><li>Select <b>yes</b> for multi-AZ deployment.</li><li>Click <b>Continue</b>, then click <b>Modify DB Instance</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Private EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> have unrestricted HTTPS (tcp/443) access",
+      "id": 8152287,
+      "risk": null,
+      "description": [
+        "EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> with a Private IP address have unrestricted HTTPS (tcp/443) access. This poses a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Allowing unrestricted (0.0.0.0/0 or ::/0) access makes your system vulnerable to malicious activity such as hacking, man-in-the-middle attacks and brute-force attacks. We strongly recommend restricting access to specific security groups or IP addresses that require it, to implement the principle of least privilege and reduce the possibility of a breach.</p><p>If unrestricted access is required, we recommend placing the EC2 instances behind a load balancer and restrict the access to the EC2 instances to the load balancer only.</p>",
+      "resolution": "<p class=\"list-title\">To restrict network access using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>NETWORK & SECURITY</b>, click on <b>Security Groups</b>.</li><li>Select the security group that you would like to reconfigure.</li><li>On the <b>Inbound</b> tab, click <b>Edit</b>.</li><li>Change the source for any inbound rules that allow unrestricted access.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> have no event subscription for recommended instance categories",
+      "id": 8152460,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> have no event subscription for recommended instance categories. This could lead to unplanned downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "Amazon RDS makes it easy to set up, operate, and scale a relational database in the cloud. For production workloads, we strongly recommend using event notifications to proactively address performance issues and outages.",
+      "resolution": "<p class=\"list-title\">Subscribe the databases to the missing RDS event notification categories:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>In the navigation pane, select <b>Event Subscriptions</b>.</li><li>In the Event Subscriptions pane, select <b>Create Event Subscription</b>.</li><li><p class=\"list-title\">In the Create Event Subscription dialog box:</p><ol type=\"a\"><li>In the <b>Name</b> field, enter a name for the event notification subscription.</li><li>For <b>Send Notifications To</b>, select an existing Amazon SNS Amazon Resource Name (ARN) for an Amazon SNS topic, or select Create Topic to enter the name of a topic and a list of recipients.</li><li>For <b>Source type</b>, select <b>Instances</b>.</li><li>For <b>instances to include</b>, select either All Instances or the specific RDS instance.</li><li>For <b>event categories to include</b>, choose the missing categories.</li><li>Click <b>Create</b>.</li></ol></li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has a single latency record",
+      "id": 8152552,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has a single latency record. This configuration presents a single point of failure which may lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "Latency based routing lets you associate multiple resources with a single domain/subdomain name and serve their requests from the AWS Region that provides the lowest latency, improving performance for the end user. Configuring a single latency record causes all traffic to be routed to one resource, resulting in an application single point of failure.",
+      "resolution": "<p>When using latency based routing, make sure that there are at least two latency records for each domain or subdomain.</p>\n\t\t\t\t\t\t\t\t\t\t   <p>To configure latency based routing, you need to create records that have the same name and type for resources in multiple AWS Regions. Amazon Route 53 determines which region offers the user the lowest latency, and then selects a latency record for that region.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "There are IAM users in account <b>973889768955</b> who have access keys that are more than <b>90</b> days old",
+      "id": 8152335,
+      "risk": null,
+      "description": [
+        "There are IAM users in account <b>973889768955</b> who have access keys that are more than <b>90</b> days old. This poses a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>AWS Access keys are long term credentials which are used by an IAM user. Access keys are used to sign programmatic requests to the AWS CLI, API or SDK. If the key is compromised, it can be used to access resources in your AWS account without your knowledge. This poses a severe security risk.</p>",
+      "resolution": "<p class=\"list-title\">Rotate access keys periodically. Rotating keys has the following benefits:</p><ul><li>Significant reduces the likelihood of accidental exposure.</li><li>Reduces the opportunities for an outsider to use compromised access keys to access your AWS resources.</li></ul><p></p><p class=\"list-title\">To rotate an access key:</p><ol><li>Create a new access key.</li><li>Configure your system to use the new access key (AWS CLI, application code, etc.).</li><li>Disable the old access key.</li><li>After validating that everything is working properly, delete the old access key.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "EC2 key pairs in account <b>844066344111</b>, region <b>us-east-1</b> are not used",
+      "id": 8151838,
+      "risk": null,
+      "description": [
+        "EC2 key pairs in account <b>844066344111</b>, region <b>us-east-1</b> are not used. We recommend removing unused key pairs for better management.",
+        "@table1"
+      ],
+      "impact": "Retaining unused EC2 key pairs increases the risk of unauthorized access to EC2 instances. Since these key pairs can be reassociated with EC2 instances at any time, they can be used to provide access to unauthorized users.",
+      "resolution": "<p>We recommend deleting unused EC2 key pairs.</p><p class=\"list-title\">To delete the unused key pair:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>NETWORK & SECURITY</b>, click on <b>Key Pairs</b>.</li><li>Select the key pair that you want to delete.</li><li>Click <b>Delete</b>.</li><li>In the <b>Delete Key Pair</b> confirmation dialog, click <b>Yes</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Load balancers in account <b>844066344111</b>, region <b>us-east-1</b> are configured with redundant inbound access",
+      "id": 8151934,
+      "risk": null,
+      "description": [
+        "Load balancers in account <b>844066344111</b>, region <b>us-east-1</b> are configured with redundant inbound access. This can pose a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "We recommend allowing as few permissions as possible. Adding unnecessary inbound port permissions to the security group may result is a security breach if this security group is used by additional resources.",
+      "resolution": "<p class=\"list-title\">To add restrictions to the load balancer security group using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, click on <b>LOAD BALANCING</b>, then click <b>Load Balancers</b>.</li><li>Select the load balancer that you want to reconfigure.</li><li>In the <b>Description</b> tab scroll down to the <b>Security</b> section and click on the relevant security group.</li><li>In the details section at the bottom, click on the <b>Inbound</b> tab and then click <b>Edit</b>.</li><li>Click on the X next to the redundant rule.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> do not have Enhanced Monitoring enabled",
+      "id": 8152418,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> do not have Enhanced Monitoring enabled. Enhanced Monitoring provides real-time operating system metrics for monitoring and troubleshooting.",
+        "@table1"
+      ],
+      "impact": "<p>You can get deep visibility into the health of your Amazon RDS instances in real-time by activating Enhanced Monitoring for Amazon RDS. Enhanced Monitoring provides a comprehensive set of over 50 system metrics and aggregated process information for your instances, at granularity of up to 1 second. You can show a visualization of the metrics on the RDS console, and also integrate them with CloudWatch and third-party applications.</p>",
+      "resolution": "<p>Enable Enhanced Monitoring on all RDS instances.</p><p class=\"list-title\">Use the following steps to enable Enhanced Monitoring:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>Click <b>Databases</b>.</li><li>Click on the database you wish to reconfigure.</li><li>Click <b>Modify</b>.</li><li>Under <b>Monitoring</b>, select <b>Enable Enhanced Monitoring</b> .</li><li>Set <b>Monitoring Role</b> to an IAM role that permits Amazon RDS to communicate with Amazon CloudWatch Logs, or select <b>Default</b> to create a role named rds-monitoring-role.</li><li>Set <b>Granularity</b> to the interval, in seconds, for collecting metrics for your DB instance or Read Replica.</li><li>Click <b>Continue</b>, then click <b>Modify DB Instance</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "All tunnels of site-to-site VPN connections in account <b>844066344111</b>, region <b>us-east-1</b> are inactive",
+      "id": 8152114,
+      "risk": null,
+      "description": [
+        "All tunnels of site-to-site VPN connections in account <b>844066344111</b>, region <b>us-east-1</b> are inactive. This will lead to application downtime whenever the VPN connection is needed (see Impact).",
+        "@table1"
+      ],
+      "impact": "A site-to-site VPN connection has two tunnels to help ensure connectivity in case one of the VPN connections becomes unavailable. When both tunnels are down, there is a network disconnect between your data center (or network) and your VPC.",
+      "resolution": "<p>Make sure that both tunnels are available.</p>\n\t\t\t\t\t\t\t\t      <p>If you use a static VPN, verify that your on-premises firewall is properly configured</p>\n\t\t\t\t\t\t\t\t\t  <p>If you use a dynamic VPN with BGP and <b>IPSEC IS UP</b> is indicated in the <b>Details</b> column, be sure to configure BGP properly on your firewall.</p>\n\t\t\t\t\t\t\t\t\t  <p>In addition, be sure to enable route propagation in your VPC route table.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Private EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> have unrestricted IMAPS (tcp/993) access",
+      "id": 8152315,
+      "risk": null,
+      "description": [
+        "EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> with a Private IP address have unrestricted IMAPS (tcp/993) access. This poses a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Allowing unrestricted (0.0.0.0/0 or ::/0) access makes your system vulnerable to malicious activity such as hacking, man-in-the-middle attacks and brute-force attacks. We strongly recommend restricting access to specific security groups or IP addresses that require it, to implement the principle of least privilege and reduce the possibility of a breach.</p>",
+      "resolution": "<p class=\"list-title\">To restrict network access using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>NETWORK & SECURITY</b>, click on <b>Security Groups</b>.</li><li>Select the security group that you would like to reconfigure.</li><li>On the <b>Inbound</b> tab, click <b>Edit</b>.</li><li>Change the source for any inbound rules that allow unrestricted access.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Static EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> don’t have termination protection",
+      "id": 8152237,
+      "risk": null,
+      "description": [
+        "<p>There are static EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> that don’t have termination protection. This configuration is very risky. Accidental instance termination through the console, the API, or the CLI can cause downtime.</p>\n\t\t\t\t\t\t\t\t\t\t  <p>Affected EC2 instances: <b>2</b> out of <b>10</b> static EC2 instances in this account & region.</p>\n\t\t\t\t\t\t\t\t\t\t  <p><b>Note:</b> Instances that have volumes with delete-on-termination are not shown here.</p>",
+        "@table1"
+      ],
+      "impact": "<p>Without termination protection enabled, there is a risk of accidentally terminating EC2 instances. This termination can lead to downtime.</p>\n\t\t\t\t\t\t\t\t <p>In addition, there is a risk of data loss when the delete-on-termination attribute is set to <b>True</b>. When this attribute is enabled, the volumes associated with the EC2 instance are deleted when the instance is terminated.</p>",
+      "resolution": "<p>Make sure that static EC2 instances with delete-on-termination that are deployed outside of an auto-scaling group have the termination protection safety feature enabled. This protects the EC2 instances from accidental termination, which could cause downtime and data loss.</p>\n\t\t\t \t\t\t\t\t\t <p>To prevent data loss during termination, set the delete-on-termination attribute to <b>false</b>.</p><p class=\"list-title\">To enable the termination protection feature using the AWS Management Console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>INSTANCES</b>, click on <b>instances</b>.</li><li>Select the EC2 instance that you would like to protect against accidental termination.</li><li>Click the <b>Actions</b> button, and then select <b>Instance Settings</b> and click <b>Change Termination Protection</b>.</li><li>In the Enable Termination Protection dialog box, click <b>Yes, Enable</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "The <b>EC2ContainerService-resilient-ecs-cluster-EcsInstanceAsg-1ECKQLH6YM3XG</b> auto scaling group points to unavailable resources",
+      "id": 8150734,
+      "risk": null,
+      "description": [
+        "The <b>EC2ContainerService-resilient-ecs-cluster-EcsInstanceLc-12AXL6WSASDXN</b> launch configuration of the <b>EC2ContainerService-resilient-ecs-cluster-EcsInstanceAsg-1ECKQLH6YM3XG</b> auto scaling group points to unavailable resources. When needed, the scaling group will not be able to spawn new EC2 instances. This could lead to severe performance issues and unplanned downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Scaling groups scale up your system automatically as needed. If launch configuration resources are not available, new EC2 instances won’t start, causing the scale up to fail. As a result, the application won’t have sufficient resources to handle the load. This will affect performance and may ultimately lead to downtime.</p>",
+      "resolution": "<p>Make sure that all of the resources in the launch configuration are available.</p><p class=\"list-title\">To prevent confusion or resource deletion:</p><ol><li>Name and tag the resources used in the launch configuration correctly.</li><li>Never reference a shared/public image in launch configuration – select only \"Owned by me\" AMIs.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "CloudFront distributions in account <b>973889768955</b>, region <b>us-east-1</b> are configured without custom error responses for all 5xx HTTP error codes",
+      "id": 8152134,
+      "risk": null,
+      "description": [
+        "CloudFront distributions in account <b>973889768955</b>, region <b>us-east-1</b> are configured without custom error responses for all 5xx HTTP error codes. It is important to configure CloudFront custom error responses for all 5xx HTTP error codes. Lack of custom error responses can lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>When a viewer call results in an error from the origin server, e.g. server is busy or unavailable, CloudFront returns the error status code to the viewer.</p>\n\t\t\t\t\t\t\t\t <p>When custom error responses are not configured, CloudFront caches the error status code for five minutes. This means that for the next five minutes, any additional, identical viewer call will receive the same error response, even if the error has already been resolved. This may cause the application to incorrectly appear to be unavailable.</p>",
+      "resolution": "<p>Make sure to configure custom error responses for all of the 5xx HTTP error codes. We recommend also configuring custom error responses for all of the 4xx HTTP error codes.</p>\n\t\t\t\t\t\t\t\t\t <p></p><p class=\"list-title\">To configure custom error responses for a CloudFront distribution using the AWS console:</p><ol><li>Open the Amazon CloudFront console at <a href=\"https://console.aws.amazon.com/cloudfront/\" target=\"_blank\">https://console.aws.amazon.com/cloudfront/</a>.</li><li>On the <b>Distributions</b> page, select the web distribution to update.</li><li>Click <b>Distribution Settings</b>, and then click the <b>Error Pages</b> tab.</li><li><p class=\"list-title\">For each missing HTTP error code:</p><ol type=\"a\"><li>Click <b>Create Custom Error Response</b>.</li><li>Select the HTTP error code from the list.</li><li>Enter the error caching TTL.</li><li>Click <b>Create</b>.</li></ol></li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "EBS volumes in account <b>973889768955</b>, region <b>us-east-1</b> are unattached and have no tags",
+      "id": 8152142,
+      "risk": null,
+      "description": [
+        "EBS volumes in account <b>973889768955</b>, region <b>us-east-1</b> are unattached and have no tags. We recommend deleting unused volumes -- especially those with no tags -- in order to reduce costs (see Impact).",
+        "@table1"
+      ],
+      "impact": "Unattached EBS volumes with no tags can't be identified. They are probably left over from terminated instances. We recommend deleting these volumes in order to reduce costs.",
+      "resolution": "<p>Make sure that all EBS volumes have tags. You can tag the volumes on creation (as part of the API call that creates them) or at a later time.</p>\n\t\t\t\t\t\t\t\t\t <p>We recommend enforcing the use of specific tags using IAM policies.</p>\n\t\t\t\t\t\t\t\t\t <p>Consider deleting unneeded volumes in order to reduce costs.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has active-active records without a health check",
+      "id": 8152540,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has active-active records without a health check. This configuration can result in failover failures which may lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "Route 53 active-active failover is done by configuring multiple records with the same name. If these records are not associated with a health check, Route 53 always considers them healthy. As a result, failover will not happen.",
+      "resolution": "<p>When using active-active records, make sure that they are associated with a health check.</p><p class=\"list-title\">To add a health check to route 53 records using the console:</p><ol><li>Open the Amazon Route 53 console at <a href=\"https://console.aws.amazon.com/route53/\" target=\"_blank\">https://console.aws.amazon.com/route53/</a>.</li><li>Click <b>Hosted Zones</b>.</li><li>Select the hosted zone that contains the failover records.</li><li>Select the failover record that you wish to update.</li><li>In <b>Associate with Health Check</b>, select <b>Yes</b>.</li><li>In <b>Health Check to Associate</b>, select the desired value.</li><li>Click <b>Save Record Set</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Listeners of load balancers in account <b>844066344111</b>, region <b>us-east-1</b> are configured with a weak security policy",
+      "id": 8151902,
+      "risk": null,
+      "description": [
+        "Listeners of load balancers in account <b>844066344111</b>, region <b>us-east-1</b> are configured with a weak security policy. This enables use of less-secure protocols and weak ciphers, posing a security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>A security policy determines two settings: the SSL/TLS protocols and the ciphers that the load balancer supports.</p>\n\t\t\t\t\t\t\t\t <p>Using the recommended security policy improves the security of the web applications that use the load balancer.</p>",
+      "resolution": "<p class=\"list-title\">To change the security policy of a load balancer using the AWS console:</p><ol><li>Open the Amazon EC2 console at <a href=\"https://console.aws.amazon.com/ec2/\" target=\"_blank\">https://console.aws.amazon.com/ec2/</a>.</li><li>In the navigation pane, under <b>LOAD BALANCING</b>, click on <b>Load Balancers</b>.</li><li>Select the load balancer that you would like to reconfigure.</li><li>On the <b>Listeners</b> tab, select the desired listener and click <b>Edit</b>.</li><li>Update the <b>Security policy</b> configuration.</li><li>Click <b>Update</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Auto scaling groups in account <b>844066344111</b>, region <b>us-east-1</b> are not in use",
+      "id": 8150722,
+      "risk": null,
+      "description": [
+        "<p>Auto scaling groups in account <b>844066344111</b>, region <b>us-east-1</b> are not in use. We recommend removing unused scaling groups for better management and cost reduction.</p>\n\t\t\t\t\t\t\t\t\t\t  <p>A scaling group is considered unused if it has no instances and is not associated with a load balancer.</p>",
+        "@table1"
+      ],
+      "impact": "Retaining unused scaling groups makes management more difficult and may lead to scaling group limit violations and unnecessary costs.",
+      "resolution": "We recommend removing unused scaling groups for better management and cost reduction.",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Static EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> do not have EBS volume encryption",
+      "id": 8152257,
+      "risk": null,
+      "description": [
+        "Static EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> do not have EBS volume encryption. This may pose a data security risk. It could also lead to downtime if you need to enable storage encryption at a later time (see Impact).",
+        "@table1"
+      ],
+      "impact": "You can encrypt your EC2 disks at rest by enabling the encryption option for the EBS volumes. You cannot enable encryption on unencrypted EBS volumes. This means that if you need to enable encryption, you must create new encrypted EBS volumes and attach them to the EC2 instance – an action that results in signfigant downtime.",
+      "resolution": "<p class=\"list-title\">To encrypt an EBS volume of an EC2 instance:</p><ol><li>Stop the EC2 instance.</li><li>Create an EBS snapshot of the volume that you would like to encrypt.</li><li>Copy the EBS snapshot, encrypting the copy in the process.</li><li>Create a new EBS volume from your new encrypted EBS snapshot. The new EBS volume is encrypted.</li><li>Detach the original EBS volume and attach your new encrypted EBS volume. Make sure to match the device name (e.g. /dev/xvda1).</li><li>Start the EC2 instance.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Services in ECS cluster <b>first-run-compute-environment_Batch_41d3754d-9e01-3336-a90d-5937625c01db</b> have a single task",
+      "id": 8152323,
+      "risk": null,
+      "description": [
+        "Services in ECS cluster <b>first-run-compute-environment_Batch_41d3754d-9e01-3336-a90d-5937625c01db</b> have a single task. This could lead to unplanned downtime during a container instance failure (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>If the ECS service has a single task and that task becomes unhealthy, the service will stop working. This can lead to application downtime.</p>",
+      "resolution": "<p>If resiliency is required for the service, set the <b>Number of tasks</b> to a value greater than one and make sure the container instances have capacity to run the additional tasks.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has failover records with a high TTL value",
+      "id": 8152520,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has failover records with a time to live (TTL) value that is higher than <b>60</b> seconds. This prevents clients from rapidly switching to the secondary record in case of a failover. A high TTL value can cause application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>TTL is the number of seconds a DNS resolver caches a response. A TTL value is associated with each record. AWS recommends a TTL of 60 seconds or less when using DNS Failover, to minimize the time that it takes to stop routing traffic to your failed endpoint.</p>",
+      "resolution": "<p class=\"list-title\">To update the TTL of the Route 53 failover records using the console:</p><ol><li>Open the Amazon Route53 console at <a href=\"https://console.aws.amazon.com/route53/\" target=\"_blank\">https://console.aws.amazon.com/route53/</a>.</li><li>Click <b>Hosted Zones</b>.</li><li>Select the hosted zone that contains the relevat failover records.</li><li>Select the failover record that needs to be updated.</li><li>Change the <b>TTL</b> to the desired value (in seconds).</li><li>Click <b>Save Record Set</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "S3 buckets in account <b>973889768955</b>, region <b>us-east-1</b> grant cross account permission to unrecognized accounts",
+      "id": 8152562,
+      "risk": null,
+      "description": [
+        "S3 buckets in account <b>973889768955</b>, region <b>us-east-1</b> grant cross account permission to unrecognized accounts. If this setting is unintended, it may pose a data security risk (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Granting S3 buckets cross account permission to unrecognized accounts may expose your data to outsiders, causing a severe security risk.</p>",
+      "resolution": "<p>Make sure that all of the S3 bucket cross account permissions are intentional.</p><p class=\"list-title\">To remove S3 cross account permission using the AWS console:</p><ol><li>Open the Amazon S3 console at <a href=\"https://console.aws.amazon.com/s3/\" target=\"_blank\">https://console.aws.amazon.com/s3/</a>.</li><li>Select the S3 bucket to reconfigure and click on the <b>Permissions</b> tab.</li><li>Click on the <b>Bucket Policy</b> subtab.</li><li>Edit the bucket policy statement that allows public access.</li><li>Click <b>Save</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> do not have auto minor version upgrade",
+      "id": 8152432,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> do not have auto minor version upgrade. This can expose your database to known issues and security vulnerabilities (see Impact).",
+        "@table1"
+      ],
+      "impact": "<p>Amazon RDS provides newer versions of each supported database engine so that you can keep your database instance up to date. Newer versions can include bug fixes, security enhancements, and other improvements for the database engine.</p>\n\t\t\t\t\t\t\t\t <p>Using <b>auto minor version upgrade</b> ensures that each RDS instance is automatically upgraded whenever a new minor database engine version is available.</p>",
+      "resolution": "<p>Enable auto minor version upgrade on all RDS instances.</p><p class=\"list-title\">Use the following steps to enable auto minor version upgrade:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>Click <b>Databases</b>.</li><li>Click on the database that you wish to reconfigure.</li><li>Click <b>Modify</b>.</li><li>Under <b>Maintenance</b>, mark <b>Yes</b> for <b>Auto minor version upgrade</b> .</li><li>Click <b>Continue</b>, then click <b>Modify DB Instance</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> have no event subscription for low storage",
+      "id": 8152474,
+      "risk": null,
+      "description": [
+        "RDS instances in account <b>973889768955</b>, region <b>us-east-1</b> have no event subscription for low storage. This could lead to unplanned downtime if the database runs out of storage space (see Impact).",
+        "@table1"
+      ],
+      "impact": "Amazon RDS makes it easy to set up, operate, and scale relational databases in the cloud. For production workloads, we strongly recommend using event notifications to proactively address performance issues and outages. The \"low storage\" notification sends an alert when the database instance has consumed more than 90% of its allocated storage.",
+      "resolution": "<p class=\"list-title\">Subscribe the databases to the low storage RDS event notification:</p><ol><li>Open the Amazon RDS console at <a href=\"https://console.aws.amazon.com/rds/\" target=\"_blank\">https://console.aws.amazon.com/rds/</a>.</li><li>In the navigation pane, select <b>Event Subscriptions</b>.</li><li>In the Event Subscriptions pane, select <b>Create Event Subscription</b>.</li><li><p class=\"list-title\">In the Create Event Subscription dialog box:</p><ol type=\"a\"><li>In the <b>Name</b> field, enter a name for the event notification subscription.</li><li>For <b>Send Notifications To</b>, select an existing Amazon SNS Amazon Resource Name (ARN) for an Amazon SNS topic, or select Create Topic to enter the name of a topic and a list of recipients.</li><li>For <b>Source type</b>, select <b>Instances</b>.</li><li>For <b>instances to include</b>, select either All Instances or the specific RDS instance.</li><li>For <b>event categories to include</b>, choose <b>low storage</b>.</li><li>Click <b>Create</b>.</li></ol></li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "The latest snapshot of EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> is more than <b>7</b> days old",
+      "id": 8152186,
+      "risk": null,
+      "description": [
+        "<p>The latest snapshot of EC2 instances in account <b>973889768955</b>, region <b>us-east-1</b> is more than <b>7</b> days old. If you need to restore the virtual machine, it will restore to an out of date snapshot, which is likely to cause data loss.</p>",
+        "@table1"
+      ],
+      "impact": "<p>In case of a disaster, a security-related incident, or any other problem that affects the VM, if there are no current snapshots, then you will only be able to restore the EC2 to an outdated snapshot. As a result, you will lose all changes made to the configuration and data after the last snapshot.</p>",
+      "resolution": "<p>First, determine the root cause of the problem. For automated snapshots, update relevant scripts, processes or tools. If snapshots are taken manually, create a new current snapshotof the EC2 instace.</p>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    },
+    {
+      "summary": "Route 53 hosted zone <b>ag4ctest.com.</b> has active-active alias records without either a target health evaluation or a health check",
+      "id": 8152536,
+      "risk": null,
+      "description": [
+        "Route 53 hosted zone <b>ag4ctest.com.</b> has active-active alias records without either a target health evaluation or a health check. This configuration can result in failover failures which may lead to application downtime (see Impact).",
+        "@table1"
+      ],
+      "impact": "Route 53 active-active failover is done by configuring multiple records with the same name. If these records are configured without target health evaluation and are not associated with a health check, Route 53 always considers them healthy. As a result, failover will not happen.",
+      "resolution": "<p>When using active-active alias records, make sure that they are configured with target health evaluation.</p><p class=\"list-title\">To enable target health evaluation for route 53 alias records using the console:</p><ol><li>Open the Amazon Route 53 console at <a href=\"https://console.aws.amazon.com/route53/\" target=\"_blank\">https://console.aws.amazon.com/route53/</a>.</li><li>Click <b>Hosted Zones</b>.</li><li>Select the hosted zone that contains the failover records.</li><li>Select the failover record that you wish to update.</li><li>In <b>Evaluate Target Health</b>, select <b>Yes</b>.</li><li>Click <b>Save Record Set</b>.</li></ol>",
+      "aggrColumns": null,
+      "aggrRows": "null"
+    }
+  ]
+}
