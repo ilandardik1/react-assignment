@@ -6,16 +6,18 @@ export const Card = ({
   summary,
   urgency,
   impact,
+  isSelected,
   resourceType,
   region,
+  handleClick,
 }) => {
   return (
-    <CardItem isActive={false}>
+    <CardItem isActive={isSelected} onClick={() => handleClick(id)}>
       <Summary>{summary || "Exercitation est esse sit magna dolor."}</Summary>
       <ProperyList>
-        <PropsLabel>decription here</PropsLabel>
-        <PropsLabel>urgency here</PropsLabel>
-        <PropsLabel>region here</PropsLabel>
+        <PropsLabel>{resourceType}</PropsLabel>
+        <PropsLabel>{urgency}</PropsLabel>
+        <PropsLabel>{region}</PropsLabel>
       </ProperyList>
     </CardItem>
   );

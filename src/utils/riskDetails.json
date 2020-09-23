@@ -1,5 +1,5 @@
 {
-  "riskDetails": [
+  "details": [
     {
       "summary": "Services in ECS cluster <b>default</b> have a single task",
       "id": 8152331,

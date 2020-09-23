@@ -28,6 +28,11 @@ export const CardItem = styled.div`
   width: 100%;
   align-items: center;
   flex-direction: column;
+  ${(props) =>
+    props.isActive &&
+    css`
+      border-left: 8px solid rgba(25, 129, 170, 1);
+    `}
 `;
 
 export const PropsLabel = styled.div`

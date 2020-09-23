@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 import { Card } from "../components/card";
 import { CardDetails } from "../components/cardDetails";
@@ -10,21 +10,47 @@ export const CardView = () => {
   //TODO 2. onClick on one of the cards mark the relevant risk as active with the following css border-left: 8px solid rgba(25, 129, 170, 1)
   //TODO 3. onClick display the relevant riskDetails data on the CardDetails component
   //TODO 4. implement the uncommented sort by date, urgency, region
+  const [risks, setRisks] = useState([]);
+  const [selectedRiskId, setSelectedRiskId] = useState(0);
+  const [risksDetails, setRiskDetails] = useState({
+    description: [""],
+    summary: "",
+    impact: "",
+  });
+  useEffect(() => {
+    const reciveRisks = async () => {
+      const { risks } = await getRisks();
+      const { details } = await getRiskDetails();
+      setRisks(risks);
+      const reduceDetails = details.reduce((cacheDetails, rd) => {
+        cacheDetails[rd.id] = rd;
+        return cacheDetails;
+      }, {});
+      setRiskDetails(reduceDetails);
+
+      risks.length && setSelectedRiskId(risks[0].id);
+    };
+    reciveRisks();
+  }, []);
+
+  const handleSelect = (id) => {
+    setSelectedRiskId(id);
+  };
 
   return (
     <div className="App">
-      <div>
-        {/* <div className="button">Sort by Date</div>
-        <div className="button">Sort by Urgency</div>
-        <div className="button">Sort by Region</div> */}
-      </div>
       <div className="Cards">
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        {risks.map((risk, i) => (
+          <Card
+            {...risk}
+            key={risk.id}
+            handleClick={handleSelect}
+            isSelected={selectedRiskId ? selectedRiskId === risk.id : false}
+          />
+        ))}
       </div>
       <div style={{ width: "30%", height: "100%" }}>
-        <CardDetails />
+        <CardDetails {...risksDetails[selectedRiskId]} />
       </div>
     </div>
   );
